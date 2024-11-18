@@ -101,7 +101,7 @@
 	\begin{tabular}{l}
 		\tiny \bf \\
 		\tiny \bf \end{tabular}  } \fancyfoot{} % clear all footer fields
-\fancyfoot[L]{\scriptsize Capstone Project Report (CO4029) - Academic year 2023 - 2024}
+\fancyfoot[L]{\scriptsize Big data (CO) - Academic year 2024 - 2025}
 \fancyfoot[R]{\scriptsize  Page {\thepage}/\pageref{LastPage}}
 \renewcommand{\headrulewidth}{0.3pt}
 \renewcommand{\footrulewidth}{0.3pt}
@@ -234,13 +234,15 @@
 
     \begin{center}
         \begin{tabular}{c}
-        \multicolumn{1}{l}{\textbf{{\Large Discrete Structure (CO1007)}}}\\
+        \multicolumn{1}{l}{\textbf{{\Large Big Data (CO1007)}}}\\
         ~~\\
         \hline
         \\
         \multicolumn{1}{l}{\textbf{{\Large Assignment Report}}}\\
         \\
-        \textbf{{\Huge BELLMAN-FORD ALGORITHM}}\\
+        \textbf{{\Huge Applying Streaming SQL in}}\\
+        \textbf{{\Huge Real-Time Social Media}}\\
+        \textbf{{\Huge Interaction Tracking}}\\
         \\
         \hline
         \end{tabular}
@@ -249,12 +251,10 @@
     \vspace{1cm}
     \begin{table}[H]
         \begin{tabular}{rrl}
-        \hspace{5 cm} & \textbf{Mentor}: & Nguyen An Khuong \\
-        & & Mai Xuan Toan \\
-        & & Nguyen Tien Thinh \\
+        \hspace{5 cm} & \textbf{Mentor}: & Thoại Nam \\
         
         & \textbf{Student}: & Trần Hà Tuấn Kiệt -- 2011493 \\
-        
+        & & Nguyễn Đức Thuỵ -- 2012158 \\
         \end{tabular}
         \end{table}
     \vspace{1cm}
@@ -308,277 +308,237 @@
 
 % \renewcommand\thechapter{Chapter \arabic{chapter}}
 
-\section{Introduction}
-Graph algorithms are essential in solving problems related to networks, routing,
-and resource allocation. The Bellman-Ford algorithm provides a robust method for
-finding shortest paths in graphs that may have negative weights. The Traveling
-Salesman Problem (TSP), on the other hand, poses a challenge in combinatorial
-optimization, seeking the shortest possible route visiting each city and
-returning to the origin city.
+\section{Introduction about Social media Interaction}
+\textbf{Social Media Interaction} refers to the ways users engage and
+communicate with content, brands, and other users on social media platforms. It
+encompasses all forms of engagement, such as likes, comments, shares, mentions,
+direct messages, and reactions to posts. These interactions create a dynamic,
+two-way communication channel between individuals, communities, and businesses.
 
-\section{Bellman-Ford Algorithm}
-\subsection{Description}
-The Bellman-Ford algorithm computes shortest paths from a single source vertex
-to all other vertices in a weighted digraph. It is capable of handling graphs
-with negative weight edges, unlike Dijkstra's algorithm.
+Social media interaction encompasses various elements that enable engagement and
+communication among users, brands, and communities. Engagement types like likes,
+comments, shares, retweets, and mentions, which allow users to express opinions
+and amplify content. Direct communication, such as private messages and replies,
+facilitates personal connections, while user-generated content (UGC) like
+reviews and testimonials highlights the creative involvement of users.
+Additionally, community engagement through group discussions and forums fosters
+a sense of belonging and collaboration. 
 
-\subsection{Complexity Analysis}
-The time complexity of Bellman-Ford is \(O(VE)\), where \(V\) is the number of
-vertices and \(E\) is the number of edges. Its space complexity is \(O(V)\), as
-it maintains a distance array.
+The importance of social media interaction lies in its ability to provide
+real-time feedback, offering valuable insights into audience opinions,
+preferences, and sentiments. It enhances brand awareness by increasing
+visibility and trust, while also allowing businesses to analyze content
+performance and measure campaign success. Social media interaction builds strong
+relationships between brands and their audiences, encourages loyalty, and helps
+identify emerging trends and consumer behaviors. Ultimately, it serves as a
+powerful tool for driving meaningful connections and strategic growth in the
+digital landscape.
 
-\subsection{Bellman-Ford Path Calculation}
-Path reconstruction is carried out using the predecessor array filled during the
-execution of the Bellman-Ford algorithm. By tracking predecessors from the
-destination node back to the source, one can determine the complete path
-traversed.
+This concept underscores the importance of leveraging unbounded data streams to
+stay competitive in the dynamic world of digital engagement. The accompanying
+vibrant image of individuals in creative poses reflects the dynamic and lively
+nature of social media platforms, aligning with the essence of constant
+interaction and engagement.
 
-\section{Traveling Salesman Problem}
-\subsection{Introduction}
-The Traveling Salesman Problem (TSP) presents a classic dilemma in combinatorial
-optimization and operations research, asking for the shortest possible route
-that visits each city exactly once and returns to the origin city. The problem
-is classified as NP-hard, which implies that no efficient algorithm exists that
-can solve all instances of TSP within polynomial time. This makes it an ideal
-benchmark for many optimization techniques, both exact and heuristic, in fields
-ranging from logistics to DNA sequencing, where the goal is often to minimize
-travel distance or cost.
+Let's take a look at a comparison between bounded dataset and unbounded dataset
+in data processing.
 
-\subsection{Theoretical Significance}
-Understanding TSP helps illuminate the complexity inherent in many real-world
-optimization problems. It also serves as a gateway to discussing other
-computational problems in NP, such as the Hamiltonian cycle problem, and
-provides insight into the theory of computational complexity itself. Its study
-has helped develop foundational concepts in algorithm design and complexity
-theory, including the introduction of approximation algorithms for NP-hard
-problems.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{Images/unbounded-data.png}
+    \vspace{1em}
+    \caption{Comparison between bounded dataset and unbounded dataset}
+    \label{fig:comparison}
+\end{figure}
 
-\subsection{Genetic Algorithm for TSP}
-Genetic Algorithms (GAs) are inspired by Darwinian principles of natural
-selection and genetics, and they have proven to be particularly adept at finding
-good solutions to TSP with relatively low computational costs compared to
-exhaustive search methods\cite{8862255}. They simulate the process of natural
-selection where the fittest individuals are selected for reproduction in order
-to produce offspring of the next generation.
+\textbf{A table represents a bounded dataset}, meaning it contains a finite and
+complete set of data at any given time. This bounded nature allows for aggregate
+or summary calculations, such as counting records or calculating averages. For
+example, the query \textbf{`SELECT count(*) FROM orders WHERE price > 100`} can
+aggregate the results in the table to produce a deterministic count because the
+data is static and complete.
 
-\subsection{Implementation}
-GAs for TSP start with a population of possible solutions (tours) represented as
-sequences of city visits. These solutions undergo processes analogous to natural
-genetic variation\cite{article}: 
-\begin{itemize}
-    \item \textbf{Selection}: Tours are selected for reproduction based on their
-    fitness, which is typically inversely proportional to their travel cost.
-    \item \textbf{Crossover}: Selected tours are recombined to produce new
-    offspring tours, hoping to combine advantageous traits from each parent.
-    \item \textbf{Mutation}: To maintain genetic diversity within the population
-    and to explore a wider solution space, tours are randomly altered. 
-\end{itemize}
-Iterative application of these processes results in the evolution of tours that
-tend to be more fit over time.
+On the other hand, \textbf{streams represent unbounded dataset}, where data
+continuously flows in over time. Since streams are ongoing, queries on streams
+never actually end; they continuously process incoming data. For example, when
+applying the same query to a stream, each incoming event is processed
+individually, providing incremental updates to the results. This behavior is
+suitable for scenarios such as real-time analytics or monitoring, where data is
+continuously generated and processed.
 
+In short, the \textbf{Figure \ref{fig:comparison}} demonstrates this distinction
+effectively, showing how tables aggregate finite data into a static result,
+while streams generate dynamic, continuously updated outputs. This concept is
+essential in understanding how modern data systems like databases, stream
+processors, and big data frameworks handle and process information.
 
-\subsection{Pseudocode}
-Provide detailed pseudocode for a Genetic Algorithm applied to TSP. The
-following pseudocode outlines the process of evolving a population of tours to
-find an approximate solution to the TSP:
+\section{Problem Statement}
+    \subsection{Impact}
+    \textbf{The lack of real-time insights from unbounded social data}
+    significantly hampers the ability of businesses and organizations to respond
+    promptly to trends and audience engagement. In the fast-paced digital
+    landscape, trends evolve rapidly, and audience preferences shift
+    dynamically. Without continuous access to real-time data streams, it becomes
+    difficult to monitor and analyze social interactions effectively. This delay
+    in gaining actionable insights prevents organizations from adapting
+    strategies, capitalizing on emerging opportunities, or addressing potential
+    challenges in a timely manner. Ultimately, the inability to respond to
+    real-time engagement can lead to missed opportunities, reduced
+    competitiveness, and weakened connections with audiences, making it crucial
+    to leverage tools that process unbounded data streams for effective
+    decision-making and sustained growth.
+    \subsection{Objectives}
+    The objective is to \textbf{implement a real-time social media interaction
+    tracking system for platforms} like Mastodon and X (formerly Twitter). This
+    system will process and analyze unbounded streams of social media data,
+    enabling organizations to monitor user interactions, engagement trends, and
+    audience behaviors as they happen. By providing actionable insights in real
+    time, it empowers businesses to stay responsive to emerging trends, adapt
+    strategies effectively, and maintain relevance in the fast-paced digital
+    landscape. This highlights the importance of leveraging advanced data
+    processing technologies to manage the dynamic nature of social media,
+    ensuring informed and timely decision-making.
 
-\begin{verbatim}
-    function GeneticAlgorithm()
-        Initialize population with random tours
-        Evaluate fitness of each tour
-        Repeat
-            Selection: Choose the fitter tours for reproduction
-            Crossover: Combine parts of two tours to create new tour
-            Mutation: Randomly alter a tour's path
-            Evaluate new fitness: Assess the quality of new tours
-        Until termination condition met 
-        (e.g., number of generations, time limit)
-        return best tour found
-    end function
-\end{verbatim}
-    
+    \subsection{Approach}
+        \subsubsection{Data Collection}
+            \subsubsubsection*{Mastodon}
+            Mastodon is a decentralized social media platform structured as a
+            \textbf{network of independent servers}, commonly referred to as
+            instances. Each instance operates independently, serving unique
+            communities and interests, yet they remain interconnected through a
+            federated network. This decentralized approach contrasts with
+            centralized platforms, fostering diversity and community-specific
+            experiences.
+            \begin{itemize}
+                \item \textbf{Structure:} Mastodon’s ecosystem consists of
+                multiple independent servers, each catering to distinct
+                communities while participating in a larger, interconnected
+                federation.
+                \item \textbf{Data access:} Mastodon provides real-time data
+                streams through its Server-Sent Events (SSE) API, enabling
+                access to ongoing activities like posts, mentions, hashtags, and
+                interactions.
+                \item \textbf{Data types:} The platform generates various types
+                of data, including posts, mentions, hashtags, and user
+                interactions, making it a rich source for social media analytics
+                and engagement monitoring.
+            \end{itemize}
+            $\quad$ Mastodon presents unique challenges due to its decentralized
+            structure, where data is distributed across numerous independent
+            servers (instances). Aggregating and analyzing data from the entire
+            network is inherently complex and resource-intensive, requiring
+            sophisticated solutions to handle the fragmented ecosystem.
+            Additionally, Mastodon's strong emphasis on user privacy, with
+            strict controls and regulations, further complicates data collection
+            and processing while ensuring compliance with user preferences and
+            privacy standards.
+            \subsubsubsection*{X (formerly Twitter)}
+            X, formerly known as Twitter, operates as a centralized social media
+            platform with a unified database, making it distinct from
+            decentralized systems like Mastodon. This centralized structure
+            provides a single, cohesive source of data, which simplifies access
+            and analysis for users, developers, and organizations.
+            \begin{itemize}
+                \item \textbf{Structure:} X is built on a centralized database
+                architecture, enabling streamlined data management and easier
+                access to platform-wide information.
+                \item \textbf{Data access:} The platform offers real-time
+                streams through the X API, allowing developers to track
+                activities such as tweets, retweets, likes, mentions, and
+                trending topics in real time.
+                \item \textbf{Data types:} X generates various types of valuable
+                data, including tweets, retweets, likes, mentions, and trends,
+                making it a vital source for social media analytics and
+                insights.
+            \end{itemize}
+            $\quad$ X faces notable challenges in its data access and usage policies.
+            Strict \textbf{rate limits on API usage} restrict the volume of data that
+            can be collected within a specific timeframe, creating barriers to
+            conducting comprehensive and large-scale analyses. Additionally,
+            \textbf{privacy regulations and API restrictions} further complicate data
+            collection and processing, as developers and researchers must
+            navigate limitations designed to protect user data while ensuring
+            compliance with legal and ethical standards. These challenges
+            necessitate innovative solutions to effectively leverage the
+            platform's data while respecting its constraints.
+            \subsubsection{Concept}
+            \textbf{Streaming SQL} is an extension of traditional SQL, specifically designed to handle unbounded, real-time data streams. Unlike standard SQL, which processes finite datasets stored in static tables, Streaming SQL operates on continuous data streams that are constantly being updated, enabling real-time analysis and processing.
+            \begin{figure}[H]
+                \centering
+                \includegraphics[width=0.7\textwidth]{Images/image (1).png}
+                \vspace{1em}
+                \caption{Concept of Streaming SQL}
+            \end{figure}
+            \begin{figure}[H]
+                \centering
+                \includegraphics[width=0.7\textwidth]{Images/image (2).png}
+                \vspace{1em}
+                \caption{Concept of Streaming SQL}
+            \end{figure}
+            \subsubsubsection*{Dataflow Semantics}
+            \begin{figure}[H]
+                \centering
+                \includegraphics[width=0.7\textwidth]{Images/row-by-row.png}
+                \vspace{1em}
+                \caption{Row-by-Row Processing}
+            \end{figure}
+            \begin{figure}[H]
+                \centering
+                \includegraphics[width=0.7\textwidth]{Images/sliding-window.png}
+                \vspace{1em}
+                \caption{Sliding windows}
+            \end{figure}
+            \begin{figure}[H]
+                \centering
+                \includegraphics[width=0.7\textwidth]{Images/tumbling-window.png}
+                \vspace{1em}
+                \caption{Tumbling windows}
+            \end{figure}
+            \begin{figure}[H]
+                \centering
+                \includegraphics[width=0.7\textwidth]{Images/apply-JOIN.png}
+                \vspace{1em}
+                \caption{Apply to Join Operation}
+            \end{figure}
+            \subsubsubsection*{Update Semantics}
+            \begin{figure}[H]
+                \centering
+                \includegraphics[width=0.7\textwidth]{Images/bounded-data-in-time.png}
+                \vspace{1em}
+                \caption{Bounded Data in Time}
+            \end{figure}
+            \begin{figure}[H]
+                \centering
+                \includegraphics[width=0.7\textwidth]{Images/image (6).png}
+                \vspace{1em}
+                \caption{processing logic of Incremental Updates}
+            \end{figure}
+        
+        \subsubsection{Tool }
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=0.7\textwidth]{Images/arroyo.png}
+            \vspace{1em}
+            \caption{Arroyo}
+        \end{figure}
+        We will incorporate \textbf{Arroyo}, a distributed stream processing engine developed in Rust, as part of our technology stack to handle real-time data streams efficiently. Arroyo is designed to support SQL-based queries, making it accessible for processing large volumes of unbounded data streams with ease. Its high scalability ensures that it can handle significant workloads while maintaining \textbf{exactly-once semantics}, which is critical for ensuring data accuracy and consistency. This tool will enable us to implement robust, real-time data processing pipelines, making it an ideal choice for applications requiring low-latency and fault-tolerant stream analytics.
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=\textwidth]{Images/tool-dash.png}
+            \vspace{1em}
+            \caption{dashboard}
+        \end{figure}
 
-Each step of the Genetic Algorithm is detailed below:
-
-\subsubsection*{Selection}
-The selection process preferentially chooses individuals from the current
-population based on their fitness scores.
-\begin{verbatim}
-Function Selection(Population, FitnessScores)
-    Selected = []
-    For each tour in Population
-        Probability = FitnessScore of tour / Sum of all FitnessScores
-        If random number < Probability
-            Add tour to Selected
-        End If
-    End For
-    Return Selected
-End Function
-\end{verbatim}
-
-\subsubsection*{Crossover}
-Crossover is a genetic operator used to combine the genetic information of two
-parents to generate new offspring.
-\begin{verbatim}
-Function Crossover(Parent1, Parent2)
-    Child = New Tour()
-    SplitPoint = Random number between 1 and length of Tour - 1
-    Copy first SplitPoint genes from Parent1 to Child
-    Fill remaining genes in Child with genes from Parent2 
-not already in Child maintaining order
-    Return Child
-End Function
-\end{verbatim}
-
-\subsubsection*{Mutation}
-Mutation introduces small random changes in the offspring, providing genetic
-diversity.
-\begin{verbatim}
-Function Mutation(Tour, MutationRate)
-    For each gene in Tour
-        If random number < MutationRate
-            Swap this gene with another random gene in the Tour
-        End If
-    End For
-    Return Tour
-End Function
-\end{verbatim}
-
-\subsubsection*{Evaluate New Fitness}
-After mutation and crossover, the fitness of new solutions must be evaluated.
-\begin{verbatim}
-Function EvaluateFitness(Tour)
-    TotalDistance = 0
-    For i from 1 to length of Tour - 1
-        TotalDistance += Distance between Tour[i] and Tour[i+1]
-    End For
-    TotalDistance += Distance between Tour[end] and Tour[begin]
-    Fitness = 1 / TotalDistance
-    Return Fitness
-End Function
-\end{verbatim}
-
-
-\subsection{Results Discussion}
-The performance of Genetic Algorithms in solving the TSP can vary significantly
-with changes in parameters such as population size, mutation rate, and selection
-method. While GAs do not guarantee an optimal solution, they are highly
-effective at producing very good solutions within reasonable time limits,
-particularly for very large instances where other methods become impractical.
-Their effectiveness also hinges on the proper tuning of parameters and
-adaptation of the algorithm to specific characteristics of the problem instance.
-
-
-\section{Evaluation}
-
-\subsection{How to Compile and Run the Program}
-To compile and run the program, follow the steps outlined below. These
-instructions assume you have a Makefile configured with the necessary commands
-to compile the program.
-
-\subsubsection*{Compiling the Program}
-To compile the program, open a terminal in the directory containing your source
-files and Makefile, and execute the following command:
-\begin{verbatim}
-make -s
-\end{verbatim}
-This command calls `make` with the `-s` (silent) option to suppress the display
-of commands being executed, making the output cleaner.
-
-\subsubsection*{Running the Program}
-Once the compilation is successful, you can run the compiled program by entering
-the following command in the terminal:
-\begin{verbatim}
-./main
-\end{verbatim}
-This command executes the `main` executable that was generated by the
-compilation process. Ensure that you have the appropriate permissions to execute
-the file, and that the current working directory is where the `main` executable
-is located.
-
-
-\subsection{Test Results}
-
-\[
-\begin{array}{cccccccccccc}
-0 & 17 & 40 & 100 & 32 & 11 & 29 & 77 & 73 & 53 & 52 & 72 \\
-48 & 0 & 23 & 42 & 81 & 5 & 12 & 37 & 31 & 55 & 18 & 66 \\
-48 & 97 & 0 & 74 & 21 & 43 & 8 & 37 & 48 & 13 & 55 & 88 \\
-79 & 53 & 66 & 0 & 8 & 97 & 38 & 61 & 48 & 76 & 75 & 71 \\
-18 & 56 & 42 & 97 & 0 & 59 & 40 & 51 & 77 & 5 & 65 & 39 \\
-45 & 86 & 82 & 20 & 23 & 0 & 96 & 100 & 44 & 84 & 45 & 97 \\
-15 & 53 & 93 & 53 & 80 & 7 & 0 & 29 & 21 & 78 & 13 & 43 \\
-87 & 9 & 1 & 26 & 26 & 44 & 98 & 0 & 92 & 49 & 9 & 77 \\
-30 & 29 & 66 & 93 & 28 & 9 & 76 & 73 & 0 & 73 & 91 & 92 \\
-31 & 9 & 38 & 38 & 38 & 25 & 83 & 17 & 68 & 0 & 69 & 93 \\
-35 & 61 & 19 & 45 & 24 & 10 & 94 & 33 & 53 & 90 & 0 & 62 \\
-19 & 82 & 57 & 95 & 57 & 96 & 67 & 13 & 54 & 65 & 90 & 0 \\
-\end{array}
-\]
-
-\subsubsection*{TSP}
-
-\textbf{Parameters}: Population size = 100, Mutation Rate = 0.05, Generations =
-2000
-
-\textbf{Results}:
-\begin{verbatim}
-    Running TSP Solver:
-    TSP Path: IFDEJABKLHCGI
-    TSP Path Cost: 213
-    Accuracy: 95.5882%
-\end{verbatim}
-
-\textbf{Parameters}: Population size = 200, Mutation Rate = 0.05, Generations =
-2000
-
-\textbf{Results}:
-\begin{verbatim}
-    Running TSP Solver:
-    TSP Path: GIAFDEJBKLHCG
-    TSP Path Cost: 206
-    Accuracy: 99.0196%
-\end{verbatim}
-
-\textbf{Parameters}: Population size = 200, Mutation Rate = 0.05, Generations =
-10000
-
-\textbf{Results}:
-\begin{verbatim}
-    Running TSP Solver:
-    TSP Path: HKCJBGIAFDELH
-    TSP Path Cost: 204
-    Accuracy: 100%
-\end{verbatim}
-
-\textbf{Parameters}: Population size = 200, Mutation Rate = 0.07, Generations =
-2000
-
-\textbf{Results}:
-\begin{verbatim}
-    Running TSP Solver:
-    TSP Path: GIAFDELHKCJBG
-    TSP Path Cost: 204
-    Accuracy: 100%
-\end{verbatim}
-
-\subsection{Limitations and Potential Improvements}
-Despite their advantages, GAs can suffer from premature convergence to
-suboptimal solutions and can be sensitive to the initial population and
-parameter settings. Ongoing research aims to improve the robustness and
-efficiency of GAs by integrating advanced techniques such as hybrid algorithms
-that combine GAs with local search methods, adaptive parameter tuning, and
-machine learning strategies to predict and adjust evolutionary dynamics
-dynamically.
-
+\section{Implementation}
+    \subsection{Set Up Infrastructure}
+    \subsection{Define Data Pipeline}
+    \subsection{Develop Key Tracking Metrics}
+    \subsection{Build dashboard}
 \section{Conclusion}
-The Bellman-Ford algorithm's ability to handle negative weights makes it a
-powerful tool for graph analysis. Meanwhile, GAs offer a robust heuristic method
-for tackling NP-hard problems like the TSP, especially in large datasets where
-exact methods are computationally impractical.
-
 
 \bibliographystyle{plainnat}
 \bibliography{refs}
+
+\nocite{*}
 
 \end{document}
