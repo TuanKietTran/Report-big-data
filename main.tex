@@ -347,7 +347,7 @@ in data processing.
     \centering
     \includegraphics[width=\textwidth]{Images/unbounded-data.png}
     \vspace{1em}
-    \caption{Comparison between bounded dataset and unbounded dataset}
+    \caption{Comparison between bounded dataset and unbounded dataset. Source: Arroyo}
     \label{fig:comparison}
 \end{figure}
 
@@ -359,7 +359,7 @@ aggregate the results in the table to produce a deterministic count because the
 data is static and complete.
 
 On the other hand, \textbf{streams represent unbounded dataset}, where data
-continuously flows in over time. Since streams are ongoing, queries on streams
+continuously flows in overtime. Since streams are ongoing, queries on streams
 never actually end; they continuously process incoming data. For example, when
 applying the same query to a stream, each incoming event is processed
 individually, providing incremental updates to the results. This behavior is
@@ -410,7 +410,7 @@ processors, and big data frameworks handle and process information.
             centralized platforms, fostering diversity and community-specific
             experiences.
             \begin{itemize}
-                \item \textbf{Structure:} Mastodon’s ecosystem consists of
+                \item \textbf{Structure:} Mastodon's ecosystem consists of
                 multiple independent servers, each catering to distinct
                 communities while participating in a larger, interconnected
                 federation.
@@ -486,13 +486,13 @@ processors, and big data frameworks handle and process information.
                 \centering
                 \includegraphics[width=0.7\textwidth]{Images/sliding-window.png}
                 \vspace{1em}
-                \caption{Sliding windows}
+                \caption{Sliding windows. Source: Arroyo}
             \end{figure}
             \begin{figure}[H]
                 \centering
                 \includegraphics[width=0.7\textwidth]{Images/tumbling-window.png}
                 \vspace{1em}
-                \caption{Tumbling windows}
+                \caption{Tumbling windows. Source: Arroyo}
             \end{figure}
             \begin{figure}[H]
                 \centering
@@ -511,13 +511,13 @@ processors, and big data frameworks handle and process information.
                 \centering
                 \includegraphics[width=0.7\textwidth]{Images/image (6).png}
                 \vspace{1em}
-                \caption{processing logic of Incremental Updates}
+                \caption{Processing logic of Incremental Updates}
             \end{figure}
         
-        \subsubsection{Tool }
+        \subsubsection{Tool}
         \begin{figure}[H]
             \centering
-            \includegraphics[width=0.7\textwidth]{Images/arroyo.png}
+            \includegraphics[width=0.3\textwidth]{Images/arroyo.png}
             \vspace{1em}
             \caption{Arroyo}
         \end{figure}
@@ -526,16 +526,60 @@ processors, and big data frameworks handle and process information.
             \centering
             \includegraphics[width=\textwidth]{Images/tool-dash.png}
             \vspace{1em}
-            \caption{dashboard}
+            \caption{Arroyo Dashboard. Source: Arroyo}
         \end{figure}
 
-\section{Implementation}
-    \subsection{Set Up Infrastructure}
-    \subsection{Define Data Pipeline}
-    \subsection{Develop Key Tracking Metrics}
-    \subsection{Build dashboard}
+\include{sections/implementations}
 \section{Conclusion}
+The deployment and operational insights gained from Arroyo highlight its exceptional suitability for
+managing real-time social media interaction tracking tasks. Its core behavior, centered on efficient
+stream processing and data analysis, underscores its capabilities as a modern tool optimized for
+both scalability and precision. Arroyo demonstrates how distributed stream processing systems, such
+as itself, can effectively bridge the gap between the volume and velocity of social media data
+streams and the real-time analytics demanded by contemporary platforms.
 
+Arroyo's design principles are apparent in its resource efficiency and ease of use. Written in Rust,
+the framework offers significant performance benefits over traditional alternatives, as observed in
+its low latency and minimal resource footprint, even when deployed on commodity hardware like the
+Raspberry Pi. This outcome not only establishes Arroyo as a strong candidate for large-scale
+applications but also showcases its adaptability to constrained environments, enabling broader
+applications ranging from edge computing to traditional cloud environments.
+
+The system's support for SQL-based streaming queries simplifies interaction and operational
+complexity. By abstracting the intricacies of continuous data ingestion and processing, Arroyo
+provides an accessible yet robust mechanism for monitoring and analyzing dynamic datasets, such as
+the decentralized activities within Mastodon's federated network. This feature enhances its
+usability for researchers, developers, and businesses aiming to derive actionable insights from
+real-time data sources.
+
+Moreover, its integration with widely used tools and protocols, such as Docker for deployment and
+Server-Sent Events (SSE) APIs for real-time data fetching, ensures streamlined operational
+workflows. Arroyo's built-in IDE and dashboard further simplify development and monitoring, offering
+intuitive interfaces for query execution, job deployment, and resource tracking. These features
+collectively foster an ecosystem that minimizes barriers to entry while maximizing productivity.
+
+The demonstrated real-time tracking pipeline offers a clear testament to Arroyo's strength in
+aggregating and analyzing unbounded data streams effectively. For instance, the ability to
+dynamically identify the most active Mastodon instances within specific time windows provides not
+only operational insights but also a foundation for exploring patterns within decentralized
+networks. Such insights emphasize Arroyo's potential to contribute significantly to studies and
+applications focused on evolving paradigms in social media and real-time analytics.
+
+In summary, Arroyo's behavior reflects its potential as a versatile tool, efficiently addressing the
+challenges associated with real-time data streams. Its implementation in this project affirms its
+practical utility and paves the way for its application in diverse domains requiring similar
+analytic capabilities.
+
+\pagebreak
+\section{Report links and details}
+We also attached here, source codes and a presentation video based on this report.
+
+\begin{enumerate}
+    \item GitHub repo: \url{https://github.com/ducthuy-ng/bigdata-sem241}
+    \item Presentation video: \url{https://www.youtube.com/watch?v=z8z_jYJGqDE}
+\end{enumerate}
+
+\pagebreak
 \bibliographystyle{plainnat}
 \bibliography{refs}
 
